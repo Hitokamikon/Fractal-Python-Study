@@ -29,7 +29,7 @@ class l_system:
     def __init__(self , ps : array):
         self.ps = ps
 
-    def produce(self , v:string):
+    def produce(self , v : string):
         result = ""
         for char in v:
             findP = False
@@ -85,6 +85,7 @@ class turtle:
         y = 0
         curves = []
         state_stack = stack()
+
         for letter in word:
             if letter == "f" or letter == "g" or letter == "e" or letter == "L" or letter == "R":
                 x += length * np.cos(heading)

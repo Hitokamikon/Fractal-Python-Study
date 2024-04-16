@@ -1,9 +1,11 @@
 import numpy as np
 import string
 import array as array
+from numbers import Number
+from typing import Callable
 
 class parameter:
-    def __init__(self , letter : string , paras : array) -> None:
+    def __init__(self , letter : string , paras : list[Number]) -> None:
         self.letter = letter
         self.paras = paras
 
@@ -25,7 +27,7 @@ class parameter:
 
 class parameter_production:
     
-    def __init__(self , predecessor : parameter , condition, successor : array) -> None:
+    def __init__(self , predecessor : parameter , condition : Callable[[parameter],bool], successor : list[Callable[[parameter],parameter]]):
         self.predecessor = predecessor
         self.condition = condition
         self.successor = successor
@@ -34,10 +36,10 @@ class parameter_l_system:
     """
     L-系统
     """
-    def __init__(self , ps : array):
+    def __init__(self , ps : list[parameter_production]):
         self.ps = ps
 
-    def produce(self , parameters:array):
+    def produce(self , parameters:list[parameter]):
         result = []
         for parameter in parameters:
             findP = False
