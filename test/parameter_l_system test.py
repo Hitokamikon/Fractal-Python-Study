@@ -20,12 +20,11 @@ def draw_parameter_l_system_fractal(system : parameter_l_system , axiom : list[p
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
 
-    turtle = parameter_turtle(1 , np.pi / 2)
+    turtle = parameter_turtle(1 , np.pi / 2.1)
     current_order = 1
     result = axiom
     while current_order <= order:
         result = system.produce(result)
-        print(result)
         curves = turtle.run(result)
 
         curves2 = []
@@ -39,13 +38,7 @@ def draw_parameter_l_system_fractal(system : parameter_l_system , axiom : list[p
         current_order = current_order + 1
     plt.show()
 
-
-p1 = parameter_production(parameter("A" , []) , lambda parameter : parameter.paras[1] <= 3 , [lambda p : parameter("A" , [p.paras[0] * 2 , p.paras[0] + p.paras[1]])])
-p2 = parameter_production(parameter("A" , []) , lambda parameter : parameter.paras[1] > 3 , [lambda p : parameter("B" , [p.paras[0]]) , lambda p : parameter("A" , [p.paras[0] / p.paras[1], 0]) ])
-p3 = parameter_production(parameter("B" , []) , lambda parameter : parameter.paras[0] < 1 , [lambda p : parameter("C" , [])])
-p4 = parameter_production(parameter("B" , []) , lambda parameter : parameter.paras[0] >= 1 , [lambda p : parameter("B" , [p.paras[0] - 1])])
-
-
+# f(x) → f(x)+f(2x)--f(2x)+f(4x)
 system = parameter_l_system([parameter_production(parameter("f" , [1]) , lambda parameter : True , [
     lambda p : parameter("f" , [p.paras[0]]) , 
     lambda p : parameter("+" , []) , 

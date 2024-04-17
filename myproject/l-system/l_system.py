@@ -56,45 +56,60 @@ class turtle:
     """
     海龟
     """
-    def __init__(self , d , alpha , * , s = 1) -> None:
+    def __init__(self , d  , alpha , * , s = 1) -> None:
         self.d = d
         self.alpha = alpha
         self.s = s
+        self.cos = np.cos(alpha)
+        self.sin = np.sin(alpha)
 
     def run(self , word : string) :
-        heading = 0
+        heading = np.matrix([1,0,0]).T
         length = self.d
-        points = [(0,0)]
-        x = 0
-        y = 0
+        points = [(0,0,0)]
+        position = np.matrix([0.0,0.0,0.0]).T
         curves = []
         state_stack = stacks.stack()
 
         for letter in word:
             if letter == "f" or letter == "g" or letter == "e" or letter == "L" or letter == "R":
-                x += length * np.cos(heading)
-                y += length * np.sin(heading)
+                position += length * heading
                 length = length * self.s
-                points.append((x,y))
+                points.append((position[0,0] , position[1,0] , position[2,0]))
+
             elif letter == "+":
-                heading += self.alpha
+                heading = np.matrix([[self.cos , -self.sin , 0] , [self.sin , self.cos , 0 ] , [0 , 0 , 1]]) * heading
+
             elif letter == "-":
-                heading -= self.alpha
+                heading = np.matrix([[self.cos , self.sin , 0] , [-self.sin , self.cos , 0 ] , [0 , 0 , 1]]) * heading
+                
+            elif letter == "&":
+                heading = np.matrix([[self.cos , 0 , -self.sin] , [0 , 1 , 0] , [self.sin , 0 , self.cos]]) * heading
+                
+            elif letter == "^":
+                heading = np.matrix([[self.cos , 0 , self.sin] , [0 , 1 , 0] , [-self.sin , 0 , self.cos]]) * heading
+
+            elif letter == "/":
+                heading = np.matrix([[1 , 0 , 0] , [0 , self.cos , -self.sin] , [0 , self.sin , self.cos]]) * heading
+
+            elif letter == "\\":
+                heading = np.matrix([[1 , 0 , 0] , [0 , self.cos , self.sin] , [0 , -self.sin , self.cos]]) * heading
+
             elif letter == "h":
                 curves.append(points)
-                x += length * np.cos(heading)
-                y += length * np.sin(heading)
-                points = [(x,y)]
+                position += heading * length
+                points = [(position[0,0] , position[1,0] , position[2,0])]
+
             elif letter == "[":
-                state_stack.push((x,y,heading,length))
+                state_stack.push((position,heading,length))
+
             elif letter == "]":
                 state = state_stack.pop()
-                x = state[0]
-                y = state[1]
-                heading = state[2]
-                length = state[3]
+                position = state[0]
+                heading = state[1]
+                length = state[2]
                 curves.append(points)
-                points = [(x,y)]
+                points = [(position[0,0] , position[1,0] , position[2,0])]
                 
         curves.append(points)
         return curves
