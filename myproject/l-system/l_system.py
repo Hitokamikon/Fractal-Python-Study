@@ -3,6 +3,11 @@ import string
 import array as array
 import random
 
+import sys
+import os
+sys.path.append(os.path.join(os.getcwd(),'myproject/utils'))
+import stacks as stacks
+
 class production:
     """
     产生式
@@ -47,27 +52,6 @@ class l_system:
                
         return result
 
-class stack:
-  def __init__ (self) -> None:
-    self.stack=[]
-
-  def isEmpty(self):
-    return self.stack==[]
-  
-  def push(self,item):
-    self.stack.append(item)
-  
-  def pop(self):
-    if self.isEmpty():
-      raise IndexError
-    return self.stack.pop()
-  
-  def peek(self):
-    return self.stack[-1]
-  
-  def size(self):
-    return len(self.stack)
-
 class turtle:
     """
     海龟
@@ -84,7 +68,7 @@ class turtle:
         x = 0
         y = 0
         curves = []
-        state_stack = stack()
+        state_stack = stacks.stack()
 
         for letter in word:
             if letter == "f" or letter == "g" or letter == "e" or letter == "L" or letter == "R":

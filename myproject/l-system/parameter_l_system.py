@@ -4,6 +4,11 @@ import array as array
 from numbers import Number
 from typing import Callable
 
+import sys
+import os
+sys.path.append(os.path.join(os.getcwd(),'myproject/utils'))
+import stacks as stacks
+
 class parameter:
     def __init__(self , letter : string , paras : list[Number]) -> None:
         self.letter = letter
@@ -58,23 +63,34 @@ class parameter_l_system:
                
         return result
 
-p1 = parameter_production(parameter("A" , []) , lambda parameter : parameter.paras[1] <= 3 , [lambda p : parameter("A" , [p.paras[0] * 2 , p.paras[0] + p.paras[1]])])
-p2 = parameter_production(parameter("A" , []) , lambda parameter : parameter.paras[1] > 3 , [lambda p : parameter("B" , [p.paras[0]]) , lambda p : parameter("A" , [p.paras[0] / p.paras[1], 0]) ])
-p3 = parameter_production(parameter("B" , []) , lambda parameter : parameter.paras[0] < 1 , [lambda p : parameter("C" , [])])
-p4 = parameter_production(parameter("B" , []) , lambda parameter : parameter.paras[0] >= 1 , [lambda p : parameter("B" , [p.paras[0] - 1])])
+class parameter_turtle:
 
-system = parameter_l_system([p1, p2 , p3 , p4])
+    def __init__(self , d , alpha) -> None:
+        self.d = d
+        self.alpha = alpha
 
-result = [parameter("B" , [2]) , parameter("A" , [3,4])]
-
-i = 1
-
-while i < 6:
-    result = system.produce(result)
-
-    p = ""
-    for r in result:
-        p += str(r)
-    
-    print(str(i) + " : " + p)
-    i += 1
+    def run(self , word : list[parameter]):
+        heading = 0
+        points = [(0,0)]
+        x = 0
+        y = 0
+        curves = []
+        state_stack = stacks.stack()
+        for letter in word:
+            if letter.letter == "f":
+                x += letter.paras[0] * np.cos(heading)
+                y += letter.paras[0] * np.sin(heading)
+                points.append((x,y))
+            elif letter.letter == "+":
+                if len(letter.paras) > 0 :
+                    heading += letter.paras[0]
+                else:
+                    heading += self.alpha
+            elif letter.letter == "-":
+                if len(letter.paras) > 0 :
+                    heading -= letter.paras[0]
+                else:
+                    heading -= self.alpha
+            
+        curves.append(points)
+        return curves

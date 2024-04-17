@@ -1,3 +1,5 @@
+import array as array
+
 class stack:
   def __init__ (self):
     self.stack=[]
