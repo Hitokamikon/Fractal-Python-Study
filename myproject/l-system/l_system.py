@@ -8,7 +8,7 @@ import os
 sys.path.append(os.path.join(os.getcwd(),'myproject/utils'))
 import stacks as stacks
 
-class production:
+class Production:
     """
     产生式
     """
@@ -27,7 +27,7 @@ class production:
         self.successor =successor
         self.p = p
 
-class l_system:
+class L_System:
     """
     L-系统
     """
@@ -52,7 +52,7 @@ class l_system:
                
         return result
 
-class turtle:
+class Turtle:
     """
     海龟
     """
@@ -114,51 +114,51 @@ class turtle:
         curves.append(points)
         return curves
 
-class l_system_fractal:
-    def __init__(self , turtle : turtle , l_system : l_system , axiom : string) -> None:
+class L_SystemFractal:
+    def __init__(self , turtle : Turtle , l_system : L_System , axiom : string) -> None:
         self.turtle = turtle
         self.system = l_system
         self.axiom = axiom
 
 #科赫曲线：
 def create_koch_curve():
-    return l_system_fractal( turtle(1,np.pi / 3), l_system([production("f" , "f+f--f+f")]) , "f")
+    return L_SystemFractal( Turtle(1,np.pi / 3), L_System([Production("f" , "f+f--f+f")]) , "f")
 
 #科赫雪花：
 def create_koch_snowflake():
-    return l_system_fractal( turtle(1,np.pi / 3), l_system([production("f" , "f+f--f+f")]) , "f--f--f")
+    return L_SystemFractal( Turtle(1,np.pi / 3), L_System([Production("f" , "f+f--f+f")]) , "f--f--f")
 
 #谢尔宾斯基方毯：
 def create_sierpinski_carpet():
-    return l_system_fractal( turtle(1,np.pi / 2), l_system([production("f" , "f-f+f+f+h-f-f-f+f") , production("h" , "hhh")]) , "f")
+    return L_SystemFractal( Turtle(1,np.pi / 2), L_System([Production("f" , "f-f+f+f+h-f-f-f+f") , Production("h" , "hhh")]) , "f")
 
 #谢尔宾斯基三角：
 def create_sierpinski_triangle():
-    return l_system_fractal( turtle(1,np.pi / 3), l_system([production("f" , "f--f--f--gg") , production("g" , "gg")]) , "f--f--f")
+    return L_SystemFractal( Turtle(1,np.pi / 3), L_System([Production("f" , "f--f--f--gg") , Production("g" , "gg")]) , "f--f--f")
 
 #二次科赫岛：
 def create_second_koch_island():
-    return l_system_fractal( turtle(1,np.pi / 2), l_system([production("f" , "f+f-f-ff+f+f-f")]) , "f-f-f-f")
+    return L_SystemFractal( Turtle(1,np.pi / 2), L_System([Production("f" , "f+f-f-ff+f+f-f")]) , "f-f-f-f")
 
 #Pentigree分形：
 def create_pentigree():
-    return l_system_fractal( turtle(1,np.pi * 0.4), l_system([production("f" , "f-f++f+f-f-f")]) , "f-f-f-f-f")
+    return L_SystemFractal( Turtle(1,np.pi * 0.4), L_System([Production("f" , "f-f++f+f-f-f")]) , "f-f-f-f-f")
 
 #Peano曲线(L)：
 def create_peano_curve_l():
-    return l_system_fractal( turtle(1,np.pi / 3), l_system([production("L" , "L-R--R+L++LL+R-") , production("R" , "+L-RR--R-L++L+R")]) , "L")
+    return L_SystemFractal( Turtle(1,np.pi / 3), L_System([Production("L" , "L-R--R+L++LL+R-") , Production("R" , "+L-RR--R-L++L+R")]) , "L")
 
 #Peano曲线(R)：
 def create_peano_curve_r():
-    return l_system_fractal( turtle(1,np.pi / 3), l_system([production("L" , "L-R--R+L++LL+R-") , production("R" , "+L-RR--R-L++L+R")]) , "R")
+    return L_SystemFractal( Turtle(1,np.pi / 3), L_System([Production("L" , "L-R--R+L++LL+R-") , Production("R" , "+L-RR--R-L++L+R")]) , "R")
 
 #龙曲线：
 def create_dragon_curve():
-    return l_system_fractal( turtle(1,np.pi / 2), l_system([production("L" , "L+R") , production("R" , "L-R")]) , "L")
+    return L_SystemFractal( Turtle(1,np.pi / 2), L_System([Production("L" , "L+R") , Production("R" , "L-R")]) , "L")
 
 #希尔伯特曲线：
 def create_hilbert_curve():
-    return l_system_fractal( turtle(1,np.pi / 2), l_system([production("f" , "+eg-fgf-ge+") , production("e" , "-fg+ege+gf-")]) , "f")
+    return L_SystemFractal( Turtle(1,np.pi / 2), L_System([Production("f" , "+eg-fgf-ge+") , Production("e" , "-fg+ege+gf-")]) , "f")
 
 
 

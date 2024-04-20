@@ -1,6 +1,8 @@
 {
   "python.analysis.extraPaths": [
     "./myproject/plot",
-    "./myproject/l-system"
+    "./myproject/l-system",
+    "./myproject/IFS",
+    "./myproject/utils",
   ]
 }

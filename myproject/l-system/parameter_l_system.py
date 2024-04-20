@@ -9,7 +9,7 @@ import os
 sys.path.append(os.path.join(os.getcwd(),'myproject/utils'))
 import stacks as stacks
 
-class parameter:
+class Parameter:
     def __init__(self , letter : string , paras : list[Number]) -> None:
         self.letter = letter
         self.paras = paras
@@ -30,21 +30,21 @@ class parameter:
           
         return result
 
-class parameter_production:
+class ParameterProduction:
     
-    def __init__(self , predecessor : parameter , condition : Callable[[parameter],bool], successor : list[Callable[[parameter],parameter]]):
+    def __init__(self , predecessor : Parameter , condition : Callable[[Parameter],bool], successor : list[Callable[[Parameter],Parameter]]):
         self.predecessor = predecessor
         self.condition = condition
         self.successor = successor
 
-class parameter_l_system:
+class ParameterL_System:
     """
     L-系统
     """
-    def __init__(self , ps : list[parameter_production]):
+    def __init__(self , ps : list[ParameterProduction]):
         self.ps = ps
 
-    def produce(self , parameters:list[parameter]):
+    def produce(self , parameters:list[Parameter]):
         result = []
         for parameter in parameters:
             findP = False
@@ -63,13 +63,13 @@ class parameter_l_system:
                
         return result
 
-class parameter_turtle:
+class ParameterTurtle:
 
     def __init__(self , d , alpha) -> None:
         self.d = d
         self.alpha = alpha
 
-    def run(self , word : list[parameter]):
+    def run(self , word : list[Parameter]):
         heading = 0
         points = [(0,0)]
         x = 0

@@ -14,13 +14,13 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = [u'simHei']   # 显示中文
 plt.rcParams['axes.unicode_minus'] = False      # 解决负号问题
 
-def draw_parameter_l_system_fractal(system : parameter_l_system , axiom : list[parameter] , name : string , order , ratio):
+def draw_parameter_l_system_fractal(system : ParameterL_System , axiom : list[Parameter] , name : string , order , ratio):
     
     #创建3D绘图
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
 
-    turtle = parameter_turtle(1 , np.pi / 2.1)
+    turtle = ParameterTurtle(1 , np.pi / 2.1)
     current_order = 1
     result = axiom
     while current_order <= order:
@@ -39,17 +39,17 @@ def draw_parameter_l_system_fractal(system : parameter_l_system , axiom : list[p
     plt.show()
 
 # f(x) → f(x)+f(2x)--f(2x)+f(4x)
-system = parameter_l_system([parameter_production(parameter("f" , [1]) , lambda parameter : True , [
-    lambda p : parameter("f" , [p.paras[0]]) , 
-    lambda p : parameter("+" , []) , 
-    lambda p : parameter("f" , [p.paras[0] * 2]) , 
-    lambda p : parameter("-" , []) , 
-    lambda p : parameter("-" , []) , 
-    lambda p : parameter("f" , [p.paras[0] * 2]) , 
-    lambda p : parameter("+" , []) , 
-    lambda p : parameter("f" , [p.paras[0] * 4]) , 
+system = ParameterL_System([ParameterProduction(Parameter("f" , [1]) , lambda parameter : True , [
+    lambda p : Parameter("f" , [p.paras[0]]) , 
+    lambda p : Parameter("+" , []) , 
+    lambda p : Parameter("f" , [p.paras[0] * 2]) , 
+    lambda p : Parameter("-" , []) , 
+    lambda p : Parameter("-" , []) , 
+    lambda p : Parameter("f" , [p.paras[0] * 2]) , 
+    lambda p : Parameter("+" , []) , 
+    lambda p : Parameter("f" , [p.paras[0] * 4]) , 
     ])])
 
-result = [parameter("f" , [1])]
+result = [Parameter("f" , [1])]
 
 draw_parameter_l_system_fractal(system , result , "a" , 5 , 1)
