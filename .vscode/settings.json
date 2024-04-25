@@ -4,5 +4,6 @@
     "./myproject/l-system",
     "./myproject/IFS",
     "./myproject/utils",
+    "./myproject/julia",
   ]
 }
