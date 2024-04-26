@@ -12,20 +12,25 @@ from julia import *
 
 import matplotlib.pyplot as plt
 
+def draw_fill_julia(xMin : float , xMax : float , yMin : float , yMax : float , interval : float , c : complex , N : int):
+    fig=plt.figure() #创建画布
+    x = xMin
+    xs = []
+    ys = []
+    while x <= xMax:
+        y = yMin
+        while y <= yMax:
+            julia = fill_julia_set_judge(N , c , complex(x,y))
+            if julia == N:
+                xs.append(x)
+                ys.append(y)
+            y+=interval
+        x+=interval
 
-fig=plt.figure() #创建画布
-x = -10
-xs = []
-ys = []
-while x < 10:
-    y = -10
-    while y < 10:
-        julia = fill_julia_set_judge(10 , complex(-0.95,0.1) , complex(x,y))
-        if julia == 10:
-            xs.append(x)
-            ys.append(y)
-        y+=0.005
-    x+=0.005
+    plt.scatter(xs,ys , s=0.1)
+    plt.show()
 
-plt.scatter(xs,ys , s=0.1)
-plt.show()
+
+draw_fill_julia(-10,10 , -10 , 10 , 0.01 , complex(-0.95 , 0.1) , 25)
+draw_fill_julia(-10,10 , -10 , 10 , 0.01 , complex(-0.14 , 0.72) , 25)
+
