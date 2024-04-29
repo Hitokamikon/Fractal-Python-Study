@@ -7,6 +7,7 @@ import os
 sys.path.append(os.path.join(os.getcwd(),'myproject/l-system'))
 from l_system import *
 from l_system_view import *
+from parameter_l_system_view import *
 
 class MainWindow(QMainWindow): 
    def __init__(self, parent=None):
@@ -16,6 +17,9 @@ class MainWindow(QMainWindow):
       tabs = QTabWidget()
       tab1 = L_SystemView()
       tabs.addTab(tab1, 'L-系统')
+      tab2 = Parameter_L_SystemView()
+      tabs.addTab(tab2, '参数L-系统')
+
       self.setCentralWidget(tabs)
       tabs.setStyleSheet("""
             QTabBar::tab {

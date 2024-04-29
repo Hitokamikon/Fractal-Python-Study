@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = [u'simHei']   # 显示中文
 plt.rcParams['axes.unicode_minus'] = False      # 解决负号问题
 
-def draw_parameter_l_system_fractal(system : ParameterL_System , axiom : list[Parameter] , name : string , order , ratio):
+def draw_parameter_l_system_fractal(system : Parameter_L_System , axiom : list[Parameter] , name : string , order , ratio):
     
     #创建3D绘图
     fig = plt.figure()
@@ -39,7 +39,7 @@ def draw_parameter_l_system_fractal(system : ParameterL_System , axiom : list[Pa
     plt.show()
 
 # f(x) → f(x)+f(2x)--f(2x)+f(4x)
-system = ParameterL_System([ParameterProduction(Parameter("f" , [1]) , lambda parameter : True , [
+system = Parameter_L_System([ParameterProduction(Parameter("f" , [1]) , lambda parameter : True , [
     lambda p : Parameter("f" , [p.paras[0]]) , 
     lambda p : Parameter("+" , []) , 
     lambda p : Parameter("f" , [p.paras[0] * 2]) , 

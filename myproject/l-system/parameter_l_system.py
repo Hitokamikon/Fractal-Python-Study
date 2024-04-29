@@ -37,7 +37,7 @@ class ParameterProduction:
         self.condition = condition
         self.successor = successor
 
-class ParameterL_System:
+class Parameter_L_System:
     """
     L-系统
     """
