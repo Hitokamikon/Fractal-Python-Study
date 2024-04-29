@@ -38,7 +38,6 @@ def draw_l_system_fractal(fractal : L_SystemFractal , name : string , order : in
     current_order = current_order + 1
   plt.show()
 
-
 draw_l_system_fractal(create_koch_curve() , "科赫曲线" , 5 , 3)
 draw_l_system_fractal(create_koch_snowflake() , "科赫雪花" , 5 , 3)
 draw_l_system_fractal(create_sierpinski_triangle() , "谢尔宾斯基三角" ,5 , 3)

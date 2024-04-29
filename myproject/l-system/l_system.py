@@ -101,7 +101,7 @@ class Turtle:
                 points = [(position[0,0] , position[1,0] , position[2,0])]
 
             elif letter == "[":
-                state_stack.push((position,heading,length))
+                state_stack.push((position.copy(),heading.copy(),length))
 
             elif letter == "]":
                 state = state_stack.pop()
