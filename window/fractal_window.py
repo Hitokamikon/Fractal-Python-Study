@@ -17,13 +17,22 @@ class MainWindow(QMainWindow):
       tab1 = L_SystemView()
       tabs.addTab(tab1, 'L-系统')
       self.setCentralWidget(tabs)
-      
+      tabs.setStyleSheet("""
+            QTabBar::tab {
+                width: 80px;    /* 设置选项卡宽度 */
+                height: 20px;    /* 设置选项卡高度 */
+                min-width: 80px; /* 设置选项卡最小宽度 */
+                max-width: 120px; /* 设置选项卡最大宽度 */
+                margin: 2px;     /* 设置选项卡边距 */
+                padding: 5px;    /* 设置选项卡内边距 */
+            }
+        """)
 
 ##  ============窗体测试程序 ============================
 if  __name__ == "__main__": 
       app = QApplication(sys.argv)
       form = MainWindow() 
-      form.resize(500,500)
+      form.resize(600,600)
       form.show()
       # form.showMaximized()
       sys.exit(app.exec_())
