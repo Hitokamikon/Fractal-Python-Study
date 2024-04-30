@@ -6,5 +6,6 @@
     "./myproject/utils",
     "./myproject/julia",
     "./myproject/Mandelbrot",
+    "./myproject/Newton Iteration",
   ]
 }

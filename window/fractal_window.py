@@ -12,6 +12,7 @@ from ifs_view import *
 from ifsp_view import *
 from julia_view import *
 from mandelbrot_view import *
+from newton_iteration_view import *
 
 class MainWindow(QMainWindow): 
    def __init__(self, parent=None):
@@ -37,6 +38,9 @@ class MainWindow(QMainWindow):
 
       tab6 = MandelbrotView()
       tabs.addTab(tab6, 'Mandelbrot集')
+
+      tab7 = NewtonIterationView()
+      tabs.addTab(tab7, '牛顿迭代')
 
       self.setCentralWidget(tabs)
       tabs.setStyleSheet("""
