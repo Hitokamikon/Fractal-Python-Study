@@ -9,6 +9,7 @@ from l_system import *
 from l_system_view import *
 from parameter_l_system_view import *
 from ifs_view import *
+from ifsp_view import *
 
 class MainWindow(QMainWindow): 
    def __init__(self, parent=None):
@@ -22,6 +23,8 @@ class MainWindow(QMainWindow):
       tabs.addTab(tab2, '参数L-系统')
       tab3 = IFSView()
       tabs.addTab(tab3, 'IFS系统')
+      tab4 = IFSPView()
+      tabs.addTab(tab4, '概率IFS系统')
 
       self.setCentralWidget(tabs)
       tabs.setStyleSheet("""
