@@ -11,6 +11,7 @@ from parameter_l_system_view import *
 from ifs_view import *
 from ifsp_view import *
 from julia_view import *
+from mandelbrot_view import *
 
 class MainWindow(QMainWindow): 
    def __init__(self, parent=None):
@@ -18,16 +19,24 @@ class MainWindow(QMainWindow):
       self.setWindowTitle("分形几何学习")
 
       tabs = QTabWidget()
+
       tab1 = L_SystemView()
       tabs.addTab(tab1, 'L-系统')
+
       tab2 = Parameter_L_SystemView()
       tabs.addTab(tab2, '参数L-系统')
+
       tab3 = IFSView()
       tabs.addTab(tab3, 'IFS系统')
+
       tab4 = IFSPView()
       tabs.addTab(tab4, '概率IFS系统')
+
       tab5 = JuliaView()
       tabs.addTab(tab5, 'Julia集')
+
+      tab6 = MandelbrotView()
+      tabs.addTab(tab6, 'Mandelbrot集')
 
       self.setCentralWidget(tabs)
       tabs.setStyleSheet("""

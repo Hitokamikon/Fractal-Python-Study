@@ -5,5 +5,6 @@
     "./myproject/IFS",
     "./myproject/utils",
     "./myproject/julia",
+    "./myproject/Mandelbrot",
   ]
 }
