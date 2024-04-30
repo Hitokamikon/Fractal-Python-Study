@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.getcwd(),'myproject/l-system'))
 from l_system import *
 from l_system_view import *
 from parameter_l_system_view import *
+from ifs_view import *
 
 class MainWindow(QMainWindow): 
    def __init__(self, parent=None):
@@ -19,6 +20,8 @@ class MainWindow(QMainWindow):
       tabs.addTab(tab1, 'L-系统')
       tab2 = Parameter_L_SystemView()
       tabs.addTab(tab2, '参数L-系统')
+      tab3 = IFSView()
+      tabs.addTab(tab3, 'IFS系统')
 
       self.setCentralWidget(tabs)
       tabs.setStyleSheet("""

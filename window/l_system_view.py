@@ -182,6 +182,3 @@ class L_SystemView(QWidget):
             button.setFont(font)
             button.clicked.connect(lambda : self.begin_draw2(text))
             return button
-      
-      def draw_l_system(system : L_SystemFractal) : 
-            pass
