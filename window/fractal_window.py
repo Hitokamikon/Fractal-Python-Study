@@ -51,6 +51,14 @@ class MainWindow(QMainWindow):
         tab7 = NewtonIterationView()
         tabs.addTab(tab7, '牛顿迭代')
         self.tabs.append(tab7)
+              
+        tab8 = DLA2dView()
+        tabs.addTab(tab8, 'DLA 2d')
+        self.tabs.append(tab8)
+
+        tab9 = DLA3dView()
+        tabs.addTab(tab9, 'DLA 3d')
+        self.tabs.append(tab9)
 
         tabs.currentChanged.connect(self.tab_changed)
         self.tab_changed(0)

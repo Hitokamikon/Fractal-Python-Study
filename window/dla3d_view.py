@@ -1,71 +1,25 @@
 import sys
 import string
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QTimer, Qt
-from PyQt5.QtWidgets import QWidget
-import pyqtgraph as pg
 from pyqtgraph.opengl import *
-import numpy as np
+from fractal_view import *
 
 import sys
 import os
 sys.path.append(os.path.join(os.getcwd(),'myproject/DLA'))
 from dla3d import *
 
-class DLA3dView(QWidget):
+class DLA3dView(FractalView):
       def __init__(self) -> None:
             super().__init__()
-            self.layout = QHBoxLayout()
-            self.setLayout(self.layout)
 
-      ##创建左侧按钮栏
-
-            vLayout = QVBoxLayout()
-            self.layout.addLayout(vLayout)
-            vLayout.setAlignment(Qt.AlignTop)
-
-            scroll_area = QScrollArea()
-            scroll_area.setWidgetResizable(True)
-            scroll_area.setFixedWidth(250)
-            vLayout.addWidget(scroll_area)
-
-            buttonsLayout = QVBoxLayout()
-            buttonsLayout.setAlignment(Qt.AlignTop)
-
-            buttons = QWidget()
-            buttons.setLayout(buttonsLayout)
-            scroll_area.setWidget(buttons)
-            
-            buttonsLayout.addWidget(self.create_button("DLA"))
-
-            self.glWidget = GLViewWidget()
-            self.glWidget.setBackgroundColor(0,0,0)
-            self.layout.addWidget(self.glWidget)
-
-      ## 创建坐标轴
-            self.xgrid = GLGridItem()
-            self.ygrid = GLGridItem()
-            self.zgrid = GLGridItem()
-            self.glWidget.addItem(self.xgrid)
-            self.glWidget.addItem(self.ygrid)
-            self.glWidget.addItem(self.zgrid)
-
-            self.xgrid.rotate(90, 0, 1, 0)
-            self.ygrid.rotate(90, 1, 0, 0)
-
-            self.xgrid.scale(1, 1, 1)
-            self.ygrid.scale(1, 1, 1)
-            self.zgrid.scale(1, 1, 1)
+            self.buttonsLayout.addWidget(self.create_button("DLA"))
 
             self.points = list()
             self.colors = list()
             self.scatter = GLScatterPlotItem()
             self.glWidget.addItem(self.scatter)
             self.dla = None
-
-            self.mytimer = QTimer(self)
-            self.mytimer.timeout.connect(self.draw)
-            self.mytimer.start(10)
             pass
 
       def draw(self) :
