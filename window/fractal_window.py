@@ -48,8 +48,12 @@ class MainWindow(QMainWindow):
         tabs.addTab(tab6, 'Mandelbrot集')
         self.tabs.append(tab6)
 
-      tab7 = NewtonIterationView()
-      tabs.addTab(tab7, '牛顿迭代')
+        tab7 = NewtonIterationView()
+        tabs.addTab(tab7, '牛顿迭代')
+        self.tabs.append(tab7)
+
+        tabs.currentChanged.connect(self.tab_changed)
+        self.tab_changed(0)
 
         self.setCentralWidget(tabs)
         tabs.setStyleSheet("""
