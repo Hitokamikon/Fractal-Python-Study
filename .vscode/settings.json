@@ -7,5 +7,6 @@
     "./myproject/julia",
     "./myproject/Mandelbrot",
     "./myproject/Newton Iteration",
+    "./myproject/DLA",
   ]
 }
